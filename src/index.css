@@ -1,0 +1,63 @@
+/* ./src/index.css */
+@import '@fortawesome/fontawesome-free/css/all.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.footer {
+  background-color: #111;  /* Dark background color */
+  color: #ccc;  /* Light gray text */
+  text-align: center;
+  padding: 20px 0;
+  font-family: Arial, sans-serif;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-links {
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: #ccc;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.footer-links a:hover {
+  color: #fff;
+}
+
+.footer-text {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.facebook-trademark {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.footer-copy {
+  font-size: 12px;
+}
+.footer-social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1rem; /* Space between icons */
+  margin: 1rem 0; /* Add some spacing above and below */
+}
+
+.social-icon {
+  color: #888; /* Gray color for the icons */
+  font-size: 1.5rem; /* Icon size */
+  transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+.social-icon:hover {
+  color: white; /* Change to white on hover */
+}
+
