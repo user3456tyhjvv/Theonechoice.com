@@ -1,10 +1,10 @@
-// youtube-embed.js
 import React from 'react';
 import YouTube from 'react-youtube';
 
+// YouTubeEmbed Component
 interface YouTubeEmbedProps {
-  url: string
-  title?: string
+  url: string;
+  title?: string;
 }
 
 export function YouTubeEmbed({ url, title = 'YouTube video player' }: YouTubeEmbedProps) {
@@ -12,37 +12,42 @@ export function YouTubeEmbed({ url, title = 'YouTube video player' }: YouTubeEmb
   const id = videoId && videoId[7].length === 11 ? videoId[7] : null;
 
   if (!id) {
-    return <div className="text-red-500">Invalid YouTube URL</div>
+    return <div className="text-red-500">Invalid YouTube URL</div>;
   }
 
   const opts = {
-    height: '390',
-    width: '640',
     playerVars: {
-      autoplay: 0 as 0 | 1,
+      autoplay: 0 as 0 | 1, // Do not autoplay
+      rel: 0,              // Disable suggested videos
     },
   };
 
   return (
-    <div className="w-full max-w-3xl mx-auto">
-      <YouTube videoId={id} opts={opts} title={title} />
+    <div className="relative w-full overflow-hidden rounded-lg">
+      {/* Maintain aspect ratio */}
+      <div className="w-full h-0 pb-[56.25%] relative">
+        <YouTube videoId={id} opts={opts} title={title} className="absolute top-0 left-0 w-full h-full" />
+      </div>
     </div>
-  )
+  );
 }
 
-// video-section.js
-
+// VideoSection Component
 export default function VideoSection() {
   return (
-    <div className="max-w-4xl mx-auto p-4 sm:p-6 md:p-8">
-      <h1 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6">Introduction Part</h1>
-      <YouTubeEmbed 
-        url="https://youtu.be/lhBL89UZ5hw" 
-        title="the one choice official introduction video "
-      />
-      <p className="mt-4 sm:mt-6 text-sm sm:text-base text-gray-600">
-        Learn more about Theonechoice and its features. This video provides an overview of how it works.
+    <div className="w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-center">
+        Introduction Part
+      </h1>
+      <div className="lg:w-[80%] lg:mx-auto xl:w-[70%]">
+        <YouTubeEmbed 
+          url="https://youtu.be/lhBL89UZ5hw" 
+          title="The One Choice Official Introduction Video"
+        />
+      </div>
+      <p className="mt-6 text-base sm:text-lg text-gray-600 text-center">
+        Learn more about The One Choice and its features. This video provides an overview of how it works.
       </p>
     </div>
-  )
+  );
 }
