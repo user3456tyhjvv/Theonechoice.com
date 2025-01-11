@@ -7,5 +7,5 @@ export default defineConfig({
   server: {
     port: 5800,
   },
-  base: '/TheOneChoice.com/',
+  base: '/',
 })
