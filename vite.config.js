@@ -9,5 +9,10 @@ export default defineConfig({
   },base: './',
   build: {
     outDir: 'dist',
+    assetsInlineLimit: 0, // Ensure all assets are copied and not inlined
+    rollupOptions: {
+input: '/index.html',
+
+    },
   },
 });
