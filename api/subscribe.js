@@ -1,10 +1,10 @@
 const nodemailer = require('nodemailer');
 const Cors = require('cors');
 
-// Initialize CORS
+// Initialize CORS to allow requests from localhost:3001
 const cors = Cors({
   methods: ['GET', 'POST', 'OPTIONS'],
-  origin: '*', // Allows all origins (use caution, explained below)
+  origin: 'http://localhost:5800',
 });
 
 // Helper function to run middleware
@@ -35,15 +35,15 @@ export default async function handler(req, res) {
     const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: process.env.EMAIL_USER, // Add to environment variables in Vercel
-        pass: process.env.EMAIL_PASS, // Add to environment variables in Vercel
+        user: process.env.EMAIL_USER, // Add your email in environment variables
+        pass: process.env.EMAIL_PASS, // Add your email password in environment variables
       },
     });
 
     // Mail options
     const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.SUBSCRIPTION_EMAIL || 'your-email@example.com', // Add recipient email in environment variables
+      from: process.env.EMAIL_USER, // Use your email from environment variables
+      to: process.env.SUBSCRIPTION_EMAIL || 'your-email@example.com', // Use your email for testing
       subject: 'New Subscription',
       text: `
         New subscription received:
