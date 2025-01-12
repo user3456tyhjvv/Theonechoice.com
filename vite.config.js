@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 5800,
-  },base: '/TheOneChoice.com/',
+  },base: './',
   build: {
     outDir: 'dist',
   },
