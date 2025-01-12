@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaFacebookF, FaInstagram, FaTwitter, FaLinkedinIn } from 'react-icons/fa';
 
 const Footer = () => {
   return (
@@ -32,7 +33,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="text-gray-300 hover:text-white"
           >
-            <i className="fab fa-facebook-f"></i>
+            <FaFacebookF size={24} />
           </a>
           <a
             href="https://www.instagram.com/sammymuigai131"
@@ -40,7 +41,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="text-gray-300 hover:text-white"
           >
-            <i className="fab fa-instagram"></i>
+            <FaInstagram size={24} />
           </a>
           <a
             href="https://www.twitter.com/@sammymuigai416"
@@ -48,7 +49,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="text-gray-300 hover:text-white"
           >
-            <i className="fab fa-twitter"></i>
+            <FaTwitter size={24} />
           </a>
           <a
             href="https://www.linkedin.com/in/sammy-muigai-1390a0259/"
@@ -56,7 +57,7 @@ const Footer = () => {
             rel="noopener noreferrer"
             className="text-gray-300 hover:text-white"
           >
-            <i className="fab fa-linkedin-in"></i>
+            <FaLinkedinIn size={24} />
           </a>
         </div>
 

@@ -4,6 +4,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+i.fab {
+  font-family: 'Font Awesome 5 Free', 'Font Awesome';
+}
+
 .footer {
   background-color: #111;  /* Dark background color */
   color: #ccc;  /* Light gray text */
