@@ -10,7 +10,7 @@ const RegisterForm = () => {
   const [error, setError] = useState('');
   const [showForm, setShowForm] = useState(false);
 
-  const backendUrl = "https://your-vercel-project-name.vercel.app/api/subscribe"; // Replace with your actual Vercel backend URL
+  const backendUrl = "https://the-one-choice-com-3j9g.vercel.app/api/subscribe"; // Replace with your actual Vercel backend URL
 
   const handleSubmit = async (e) => {
     e.preventDefault();
