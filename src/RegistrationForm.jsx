@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PhoneInput from 'react-phone-number-input';
 
+
 const RegisterForm = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
@@ -10,34 +11,35 @@ const RegisterForm = () => {
   const [error, setError] = useState('');
   const [showForm, setShowForm] = useState(false);
 
-  const backendUrl = "https://the-one-choice-com-3j9g.vercel.app/api/subscribe"; // Replace with your actual Vercel backend URL
+  const backendUrl = "https://the-one-choice-com-3j9g.vercel.app/api/subscribe";
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError('');
-  
+
     if (!email || !name || !phone) {
       setError('All fields are required.');
       setIsSubmitting(false);
       return;
     }
-  
+
     try {
-      const response = await fetch(backendUrl, {  // Use the updated backend URL here
+      const response = await fetch(backendUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email, name, phone }),
       });
-  
+
       const data = await response.json();
-  
+
       if (!response.ok) {
         throw new Error(data.message || 'Subscription failed');
       }
-  
+
       setIsSubmitted(true);
     } catch (err) {
       setError('An error occurred. Please try again.');
@@ -46,7 +48,6 @@ const RegisterForm = () => {
       setIsSubmitting(false);
     }
   };
-  
 
   return (
     <div id="register" className="min-h-screen bg-black flex flex-col justify-center items-center p-6">
@@ -67,77 +68,64 @@ const RegisterForm = () => {
           <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-lg shadow-md max-w-md mx-auto">
             {error && <div className="text-red-500 text-sm font-medium">{error}</div>}
 
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-                Your Best Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                placeholder="your@email.com"
-                className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 placeholder-gray-400 text-black"
-              />
-            </div>
+            {isSubmitted ? (
+              <div className="text-green-500 text-lg font-medium">
+                Thank you for subscribing! Please check your email for confirmation.
+              </div>
+            ) : (
+              <>
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                    Your Best Email
+                  </label>
+                  <input
+                    id="email"
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                    placeholder="your@email.com"
+                    className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 placeholder-gray-400 text-black"
+                  />
+                </div>
 
-            <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-                Preferred Name
-              </label>
-              <input
-                id="name"
-                type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                required
-                placeholder="Your Name"
-                className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 placeholder-gray-400 text-black"
-              />
-            </div>
+                <div>
+                  <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                    Preferred Name
+                  </label>
+                  <input
+                    id="name"
+                    type="text"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    required
+                    placeholder="Your Name"
+                    className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 placeholder-gray-400 text-black"
+                  />
+                </div>
 
-            <div>
-              <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-                Phone Number
-              </label>
-              <PhoneInput
-                international
-                countryCallingCodeEditable={false}
-                value={phone}
-                onChange={(value) => setPhone(value)}
-                className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 text-black"
-              />
-              <style>
-                {`
-                  .PhoneInput {
-                    width: 100%;
-                  }
-                  .PhoneInput input {
-                    width: 100%;
-                    padding: 0.75rem;
-                    border: 1px solid #d1d5db;
-                    border-radius: 0.375rem;
-                    color: black;
-                  }
-                  .PhoneInput .PhoneInputCountry {
-                    height: auto;
-                  }
-                  .PhoneInput .PhoneInputCountryIcon {
-                    width: 1.5rem;
-                    height: 1rem;
-                  }
-                `}
-              </style>
-            </div>
+                <div>
+                  <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                    Phone Number
+                  </label>
+                  <PhoneInput
+                    international
+                    countryCallingCodeEditable={false}
+                    value={phone}
+                    onChange={(value) => setPhone(value)}
+                    className="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-yellow-500 focus:border-yellow-500 text-black"
+                  />
+                </div>
 
-            <button
-              type="submit"
-              className="w-full bg-yellow-500 hover:bg-yellow-400 text-black font-semibold py-3 px-4 rounded-md shadow focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 disabled:opacity-50"
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? 'Submitting...' : 'Subscribe'}
-            </button>
+                <button
+                  type="submit"
+                  className="w-full bg-yellow-500 hover:bg-yellow-400 text-black font-semibold py-3 px-4 rounded-md shadow focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 disabled:opacity-50"
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? 'Submitting...' : 'Subscribe'}
+                </button>
+              </>
+            )}
           </form>
         )}
       </div>
